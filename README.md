@@ -133,6 +133,10 @@ Packaging types are `Wood`, `Cardboard`, and `Plastic`. Protection types are `Po
 
 Errors use `application/problem+json` with `status`, `title`, `detail`, and a stable `code`; validation errors also include an `errors` map. Missing active variants return `404 VARIANT_NOT_FOUND`; insufficient stock in any single record returns `409 INSUFFICIENT_STOCK`. Backend logs retain infrastructure diagnostics while client errors omit database internals.
 
+## Postman collection
+
+Import [the store collection](postman/DuckWarehouse.Store.postman_collection.json) to exercise `POST /api/orders/quote`, including packaging, shipping, pricing boundaries, destinations, and error responses. The optional [local environment](postman/DuckWarehouse.Local.postman_environment.json) targets `http://127.0.0.1:8081`. See [the Postman instructions](postman/README.md) for seed inventory, variables, and running all response checks.
+
 ## Tests and builds
 
 Backend (Docker must be running; Testcontainers creates an isolated replica set and leaves the development database untouched):
