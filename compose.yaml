@@ -1,9 +1,9 @@
 name: duckwarehouse-mongo
 services:
   mongo:
-    image: mongo:7.0
+    image: mongo:7.0.28
     command: ["mongod", "--replSet", "rs0", "--bind_ip_all"]
-    ports: ["127.0.0.1:27017:27017"]
+    ports: ["127.0.0.1:27018:27017"]
     volumes: ["mongo-data:/data/db"]
     healthcheck:
       test:

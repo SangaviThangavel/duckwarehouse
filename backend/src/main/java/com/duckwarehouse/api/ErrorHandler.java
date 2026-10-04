@@ -1,6 +1,8 @@
 package com.duckwarehouse.api;
 
 import java.util.LinkedHashMap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.*;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestControllerAdvice
 public class ErrorHandler {
+    private static final Logger log = LoggerFactory.getLogger(ErrorHandler.class);
     @ExceptionHandler(ApiException.class)
     ProblemDetail business(ApiException error) {
         return problem(error.status(), error.code(), error.getMessage());
@@ -29,7 +32,8 @@ public class ErrorHandler {
     }
 
     @ExceptionHandler(DataAccessException.class)
-    ProblemDetail database() {
+    ProblemDetail database(DataAccessException error) {
+        log.warn("Database operation failed", error);
         return problem(HttpStatus.SERVICE_UNAVAILABLE, "DATABASE_UNAVAILABLE", "The database is unavailable. Try again later.");
     }
 

@@ -2,12 +2,12 @@ spring:
   application:
     name: duckwarehouse
   mongodb:
-    uri: ${MONGODB_URI:mongodb://localhost:27017/duckwarehouse?replicaSet=rs0&directConnection=true}
+    uri: ${MONGODB_URI:mongodb://localhost:27018/duckwarehouse?replicaSet=rs0&directConnection=true}
   jackson:
     deserialization:
       fail-on-unknown-properties: true
       accept-float-as-int: false
 server:
-  port: ${PORT:8080}
+  port: ${PORT:8081}
   error:
     include-message: never
